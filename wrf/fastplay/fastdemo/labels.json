@@ -1,0 +1,215 @@
+{
+	"position_0": {
+		"label": "startPosition",
+		"pos": [1288, 15694]
+	},
+	"position_1": {
+		"label": "base1Assembly",
+		"pos": [3198, 13829]
+	},
+	"position_2": {
+		"label": "base2Assembly",
+		"pos": [720, 9648]
+	},
+	"position_3": {
+		"label": "base3Assembly",
+		"pos": [5447, 10690]
+	},
+	"position_4": {
+		"label": "base4Assembly",
+		"pos": [6459, 3781]
+	},
+	"position_5": {
+		"label": "base5Assembly",
+		"pos": [11075, 14024]
+	},
+	"position_6": {
+		"label": "base6Assembly",
+		"pos": [9154, 7372]
+	},
+	"position_7": {
+		"label": "base7Assembly",
+		"pos": [9154, 7879]
+	},
+	"position_8": {
+		"label": "base8Assembly",
+		"pos": [584, 3395]
+	},
+	"position_9": {
+		"label": "base9Assembly",
+		"pos": [1093, 3412]
+	},
+	"position_10": {
+		"label": "artifactpos",
+		"pos": [3518, 15934]
+	},
+	"area_0": {
+		"label": "landingZone",
+		"pos1": [960, 15570],
+		"pos2": [1216, 15826]
+	},
+	"area_1": {
+		"label": "scavBase1",
+		"pos1": [2304, 13184],
+		"pos2": [3840, 14336]
+	},
+	"area_2": {
+		"label": "scavBase2",
+		"pos1": [128, 8832],
+		"pos2": [1152, 10496]
+	},
+	"area_3": {
+		"label": "scavBase3",
+		"pos1": [4224, 9856],
+		"pos2": [6528, 11904]
+	},
+	"area_4": {
+		"label": "scavBase4",
+		"pos1": [5504, 3072],
+		"pos2": [7040, 4480]
+	},
+	"area_5": {
+		"label": "npBase1",
+		"pos1": [10368, 12160],
+		"pos2": [12288, 14592]
+	},
+	"area_6": {
+		"label": "npBase2",
+		"pos1": [7680, 6912],
+		"pos2": [9088, 8320]
+	},
+	"area_7": {
+		"label": "npBase3",
+		"pos1": [0, 1280],
+		"pos2": [1800, 5248]
+	},
+	"area_8": {
+		"label": "npBase4",
+		"pos1": [5888, 0],
+		"pos2": [8832, 1280]
+	},
+	"area_9": {
+		"label": "factory1Trigger",
+		"subscriber": 0,
+		"pos1": [3328, 15744],
+		"pos2": [3712, 17024]
+	},
+	"area_10": {
+		"label": "factory2Trigger",
+		"subscriber": 0,
+		"pos1": [2432, 12416],
+		"pos2": [2688, 13952]
+	},
+	"area_11": {
+		"label": "factory3Trigger",
+		"subscriber": 0,
+		"pos1": [256, 9088],
+		"pos2": [1920, 9472]
+	},
+	"area_13": {
+		"label": "np2Trigger",
+		"subscriber": 0,
+		"pos1": [10368, 12032],
+		"pos2": [12160, 12544]
+	},
+	"area_14": {
+		"label": "np3Trigger",
+		"subscriber": 0,
+		"pos1": [7808, 7040],
+		"pos2": [8832, 8064]
+	},
+	"area_15": {
+		"label": "enemyLZ",
+		"pos1": [7680, 640],
+		"pos2": [7936, 896]
+	},
+	"area_21": {
+		"label": "npFinal",
+		"pos1": [5632, 1536],
+		"pos2": [8192, 2560]
+	},
+	"object_0": {
+		"label": "base1Factory",
+		"id": 26,
+		"player": 7,
+		"type": 1
+	},
+	"object_1": {
+		"label": "radarTower",
+		"id": 415,
+		"player": 1,
+		"type": 1
+	},
+	"object_2": {
+		"label": "base2Factory",
+		"id": 55,
+		"player": 7,
+		"type": 1
+	},
+	"object_3": {
+		"label": "base3Factory",
+		"id": 94,
+		"player": 7,
+		"type": 1
+	},
+	"object_4": {
+		"label": "base4Factory",
+		"id": 206,
+		"player": 7,
+		"type": 1
+	},
+	"object_6": {
+		"label": "base6Factory",
+		"id": 154,
+		"player": 1,
+		"type": 1
+	},
+	"object_7": {
+		"label": "base7Factory",
+		"id": 155,
+		"player": 1,
+		"type": 1
+	},
+	"object_10": {
+		"label": "base1Research",
+		"id": 131,
+		"player": 1,
+		"type": 1
+	},
+	"object_11": {
+		"label": "base2Research",
+		"id": 329,
+		"player": 1,
+		"type": 1
+	},
+	"object_12": {
+		"label": "base3Research",
+		"id": 330,
+		"player": 1,
+		"type": 1
+	},
+	"object_13": {
+		"label": "base4Research",
+		"id": 331,
+		"player": 1,
+		"type": 1
+	},
+	"object_14": {
+		"label": "base51Factory",
+		"id": 129,
+		"player": 1,
+		"type": 1
+	},
+	"object_15": {
+		"label": "base91Factory",
+		"id": 445,
+		"player": 1,
+		"type": 1
+	},
+	"object_16": {
+		"label": "base81Factory",
+		"id": 443,
+		"player": 1,
+		"type": 1
+	}
+}
