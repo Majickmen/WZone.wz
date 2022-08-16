@@ -43,6 +43,14 @@
 		"label": "artifactpos",
 		"pos": [3518, 15934]
 	},
+	"position_11": {
+		"label": "base82Assembly",
+		"pos": [587, 3398]
+	},
+	"position_12": {
+		"label": "base92Assembly",
+		"pos": [1095, 3415]
+	},
 	"area_0": {
 		"label": "landingZone",
 		"pos1": [960, 15570],
@@ -158,6 +166,12 @@
 		"player": 7,
 		"type": 1
 	},
+	"object_5": {
+		"label": "base2Command",
+		"id": 457,
+		"player": 1,
+		"type": 1
+	},
 	"object_6": {
 		"label": "base6Factory",
 		"id": 154,
@@ -167,6 +181,18 @@
 	"object_7": {
 		"label": "base7Factory",
 		"id": 155,
+		"player": 1,
+		"type": 1
+	},
+	"object_8": {
+		"label": "base82Factory",
+		"id": 322,
+		"player": 1,
+		"type": 1
+	},
+	"object_9": {
+		"label": "base92Factory",
+		"id": 323,
 		"player": 1,
 		"type": 1
 	},
