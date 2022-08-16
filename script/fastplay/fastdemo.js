@@ -1,24 +1,21 @@
-//WZone.wz, is designed to be a compacted Alpha Campaign, reducing tech and play time,
-//for a more streamlined experience. Each NPbase will need to be scaled and balanced
-//for what few techs are provided. Need to add code to remove the 2 repair droids or
-//code to add 2 repair droids only for easy difficulty. As well as a balancing of the
-//scav techs, or triggers on destruction of a scav base to grant additional research
-//to scavs to maintain a challenging level of gameplay.
-//
-//Decide whether or not to include cyborgs in mission
-//
-//Future Additions,
-//Alphav1 get every factory to produce units...done
-//Alphav2 get reinforcements working for campaign end fight...
-//Alphav3 get all videos linked for a complete package...stuck adding new vids, no docs
-//Betav1 Balance scav tech/units for player tech for equal power level...awaiting testing
-//Betav2 Balance NP tech/units for player tech for challanging gameplay...awaiting testing
-//Betav3 Optimize NP/Scav bases for realnise...
-//Gammav1 map design optimization...
-//Gammav2 smooth any edges and polish for a final packaged release...
-
+//WZone.wz Fastplay script
+//Includes 4 scav bases, 3 NPbases, and 1 NP LZ.
+//Enemies are set to get stronger as you progress with only basic research being granted
+//to the player. Limit of 12 oil resources and small attack waves result in a calulated
+//approach to achieving victory in this setting. Includes use of 1 altered video files
+//inside sequences.wz and 2 altered audio files included.
+//Current Version Alpha 1.1.0
+//Missing code sections:
+//    Enemy LZ reinforcements
+//    Enemy Ground reinforcements
+//    Player LZ intro and include a set unit list determined by Difficulty
+//      Easy: 	2 trucks, 6 Machinegun, 2 Repair
+//      Medium:	2 trucks, 8 Machinegun
+//      Hard: 	2 trucks
+//-------------------------------------Resources-----------------------------------------
 include("script/campaign/libcampaign.js");
 include("script/campaign/templates.js");
+//---------------------------------Enemy ID and Tech-------------------------------------
 const SCAVENGER_PLAYER = 7;
 const SCAVENGER_RES1 = [
 	"R-Wpn-Flamer-Damage01", "R-Wpn-Flamer-Range01", "R-Wpn-MG-Damage02", "R-Wpn-MG-ROF01",
@@ -56,12 +53,15 @@ const NEW_PARADIGM_RES3 = [
 	"R-Vehicle-Engine03", "R-Struc-RprFac-Upgrade03", "R-Wpn-Rocket-Damage03",
 	"R-Vehicle-Metals03", "R-Wpn-RocketSlow-Damage03", "R-Cyborg-Metals03",
 ];
+//-------------------------------------Variables-----------------------------------------
 var radarTower
+//-----------------------------------Event Triggers--------------------------------------
 camAreaEvent("factory1Trigger", function()
 {
 	camCompleteRequiredResearch(SCAVENGER_RES1, SCAV_7);
 	camEnableFactory("base1Factory");
 	camPlayVideos({video: "MBDEMO_MSG", type: MISS_MSG});
+	//Activate group of 8 babapeople and 2 babatrikes to attack player=======
 });
 camAreaEvent("factory2Trigger", function()
 {
@@ -73,32 +73,30 @@ camAreaEvent("factory3Trigger", function()
 	camCompleteRequiredResearch(SCAVENGER_RES3, SCAV_7);
 	camEnableFactory("base3Factory");
 	camPlayVideos({video: "MBDEMO2_MSG", type: MISS_MSG});
-	//hackAddMessage() place blip on scav base 3
+	//hackAddMessage() place blip on scav base 3=============================
 });
 camAreaEvent("np3Trigger", function()
 {
 	camCompleteRequiredResearch(SCAVENGER_RES4, SCAV_7);
-	//camCompleteRequiredResearch(NEW_PARADIGM_RES3, NEW_PARADIGM);
+	camCompleteRequiredResearch(NEW_PARADIGM_RES3, NEW_PARADIGM);
 	camEnableFactory("base4Factory");
 	camEnableFactory("base81Factory");
 	camEnableFactory("base91Factory");
-//NPAll out attack message
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO3_MSG", type: MISS_MSG}]);
 });
 camAreaEvent("np2Trigger", function()
 {
-	//camCompleteRequiredResearch(NEW_PARADIGM_RES2, NEW_PARADIGM);
+	camCompleteRequiredResearch(NEW_PARADIGM_RES2, NEW_PARADIGM);
 	camEnableFactory("base6Factory");
 	camEnableFactory("base7Factory");
-//NPRetaliation message
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO5_MSG", type: MISS_MSG}]);
 });
 function eventAttacked(victim, structure) {
-//Made to detect if a np struct is gone before playing a warning message when first 
-//attacking np units.
-//Doesn't work ai but it at least is usable as is, without errors. not cleaning it up.
-//Will trigger even if struct is still around, but at least I can tag this to
-//activate the first np factory.
+//Made to detect if a np struct is gone before playing a warning message when first -----
+//attacking np units.--------------------------------------------------------------------
+//Doesn't work ai but it at least is usable as is, without errors. not cleaning it up.---
+//Will trigger even if struct is still around, but at least I can tag this to------------
+//activate the first np factory.---------------------------------------------------------
 	if (!camDef(structure) || !structure || structure.id !== radarTower.id)
 	{
 		if (!camDef(victim) || !victim || victim.player === CAM_HUMAN_PLAYER)
@@ -117,13 +115,11 @@ function eventAttacked(victim, structure) {
 }
 function NPWarning(args)
 {
-	//camCompleteRequiredResearch(NEW_PARADIGM_RES1, NEW_PARADIGM);
+	camCompleteRequiredResearch(NEW_PARADIGM_RES1, NEW_PARADIGM);
 	camEnableFactory("base51Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO4_MSG", type: MISS_MSG}, "pcv900.ogg"]);
 }
-
-//Unfinished section
-//
+//---------------------------------------------------------------------Unfinished Section
 //
 //UNFINISHED CODE
 //add np transport and ground reinforcements, add templates for np mantis units,
@@ -131,11 +127,37 @@ function NPWarning(args)
 //after destroying 3rd np base. and 10 transport waves[100] every 1 minutes after
 //destroying/passing by scavBase4. First transport arrives on trigger.
 //
-//
+//---------------------------------------------------------------------------------------
 camAreaEvent("npFinal", function()
 {
-
+//========================================================================
 });
+//------------------------------Mission Objective Videos---------------------------------
+function camAritifactPickup_artifactpos()
+{
+	camCallOnce("VidPmod");
+}
+function camArtifactPickup_base2Command()
+{
+	camCallOnce("VidComm");
+}
+function camAritifactPickup_base82Factory()
+{
+	camCallOnce("VidSynap");
+}
+function VidPmod()
+{
+	camPlayVideos({video: "MBDEMO7_MSG", type: CAMP_MSG});
+}
+function VidComm()
+{
+	camPlayVideos({video: "MBDEMO8_MSG", type: MISS_MSG});
+}
+function VidSynap()
+{
+	camPlayVideos({video: "MBDEMO9_MSG", type: CAMP_MSG});
+}
+//-----------------------------------Game Mechanics--------------------------------------
 function grantStartTech()
 {
 	const TECH = [
@@ -145,18 +167,14 @@ function grantStartTech()
 		"A0CommandCentre", "A0PowerGenerator", "A0ResourceExtractor",
 		"A0ResearchFacility", "A0LightFactory"
 	];
-
 	camCompleteRequiredResearch(TECH, CAM_HUMAN_PLAYER);
 	for (var i = 0, l = STRUCTS.length; i < l; ++i)
 	{
 		enableStructure(STRUCTS[i], CAM_HUMAN_PLAYER);
 	}
-
-	//NOTE: Leaving this in for simplicities sake.
 	enableResearch("R-Wpn-MG-Damage03", CAM_HUMAN_PLAYER);
 	completeResearch("R-Wpn-MG-Damage03", CAM_HUMAN_PLAYER);
 }
-
 function eventStartLevel()
 {
 	setAlliance(NEW_PARADIGM, SCAV_7, true);
@@ -166,13 +184,10 @@ function eventStartLevel()
 	var enemyLz = getObject("enemyLZ");
 	centreView(startpos.x, startpos.y);
 	setNoGoArea(lz.x, lz.y, lz.x2, lz.y2, CAM_HUMAN_PLAYER);
-
 	setReinforcementTime(-1);
 	setMissionTime(-1);
 	grantStartTech();
-
 	setPower(1000, CAM_HUMAN_PLAYER);
-
 	camSetEnemyBases({
 		"southBase": {
 			cleanup: "scavBase1",
@@ -217,12 +232,10 @@ function eventStartLevel()
 			eliminateSnd: "pcv394.ogg"
 		},
 	});
-
-	camSafeRemoveObject("flamerArti", false);
+//-------------------------------------Artifacts-----------------------------------------
 	camSetArtifacts({
 		"base1Factory": { tech: "R-Wpn-MG2Mk1" },
 		"artifactpos": { tech: "R-Struc-PowerModuleMk1" },
-//cam1/cam1bpow.ogg needs to play on pickup of 'artifactpos'
 		"radarTower": { tech: "R-Struc-Research-Module" },
 		"base2Factory": { tech: "R-Wpn-Cannon1Mk1" },
 		"base3Factory": { tech: "R-Vehicle-Prop-Halftracks" },
@@ -236,11 +249,11 @@ function eventStartLevel()
 		"base2Research": { tech: "R-Struc-Power-Upgrade01" },
 		"base3Research": { tech: "R-Struc-Research-Upgrade01" },
 		"base4Research": { tech: "R-Vehicle-Engine01" },
-//		"base2Command": { tech: "command turret" }, play custom video cam1ccomb.ogg when artifact is retrieved.
-//		"base82Factory": { tech: "synaptic link" }, play cam1/cam1acp.ogg when artifact is retrieved.
-//		"base92Factory": { tech: "cyborg something or something" }, its the last obtainable artifact
+		"base2Command": { tech: "R-Struc-CommandRelay" },
+		"base82Factory": { tech: "R-Comp-SynapticLink" },
+		"base92Factory": { tech: "R-Struc-Factory-Cyborg" },
 	});
-
+//------------------------------------Enemy Forces---------------------------------------
 	camSetFactories({
 		"base1Factory": {
 			assembly: "base1Assembly",
@@ -270,7 +283,6 @@ function eventStartLevel()
 			throttle: camChangeOnDiff(camSecondsToMilliseconds(5)),
 			templates: [cTempl.blokeheavy, cTempl.trikeheavy, cTempl.buggyheavy, cTempl.rbjeepheavy]
 		},
-//NPBase1: A single 2nd level factory to build a defensive force for when the player arrives.
 		"base51Factory": {
 			assembly: "base5Assembly",
 			order: CAM_ORDER_DEFEND,
@@ -278,7 +290,6 @@ function eventStartLevel()
 			throttle: camChangeOnDiff(camSecondsToMilliseconds(15)),
 			templates: [cTempl.nphmg]
 		},
-//NPBase2: Two 1st level factories to spit out small assault groups to harass player(revenge).
 		"base6Factory": {
 			assembly: "base6Assembly",
 			order: CAM_ORDER_ATTACK,
@@ -293,22 +304,36 @@ function eventStartLevel()
 			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
 			templates: [cTempl.nphmg, cTempl.npblc]
 		},
-//NPBase3: Two 3rd level factories to squash the player for destroying their bases.
 		"base81Factory": {
 			assembly: "base8Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(10)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
 			templates: [cTempl.npmrl, cTempl.npblc]
 		},
 		"base91Factory": {
 			assembly: "base9Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(10)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
 			templates: [cTempl.npltat, cTempl.nphmg]
+		},
+		"base82Factory": {
+			assembly: "base82Assembly",
+			order: CAM_ORDER_ATTACK,
+			groupSize: 4,
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(15)),
+			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
+		},
+		"base92Factory": {
+			assembly: "base92Assembly",
+			order: CAM_ORDER_ATTACK,
+			groupSize: 4,
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(15)),
+			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		}
 	});
+//----------------------------Start of Mission Event Queue-------------------------------
 	radarTower = getObject("radarTower");
 	camPlayVideos({video: "MBDEMO1_MSG", type: MISS_MSG});
 //have transport drop units at starting point then camPlayVideos
