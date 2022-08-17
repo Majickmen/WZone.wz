@@ -2,7 +2,7 @@
 //Includes 4 scav bases, 3 NPbases, and 1 NP LZ.
 //Enemies are set to get stronger as you progress with only basic research being granted
 //to the player. Limit of 12 oil resources and small attack waves result in a calulated
-//approach to achieving victory in this setting. Includes use of 1 altered video files
+//approach to achieving victory in this setting. Includes use of 3 altered video files
 //inside sequences.wz and 2 altered audio files included.
 //Current Version Alpha 1.1.0
 //Missing code sections:
@@ -61,6 +61,7 @@ camAreaEvent("factory1Trigger", function()
 	camCompleteRequiredResearch(SCAVENGER_RES1, SCAV_7);
 	camEnableFactory("base1Factory");
 	camPlayVideos({video: "MBDEMO_MSG", type: MISS_MSG});
+	queue("sendScavAttack");
 	//Activate group of 8 babapeople and 2 babatrikes to attack player=======
 });
 camAreaEvent("factory2Trigger", function()
@@ -147,7 +148,7 @@ function camAritifactPickup_base82Factory()
 }
 function VidPmod()
 {
-	camPlayVideos({video: "MBDEMO7_MSG", type: CAMP_MSG});
+	camPlayVideos({video: "MBDEMO7_MSG", type: MISS_MSG});
 }
 function VidComm()
 {
@@ -155,9 +156,18 @@ function VidComm()
 }
 function VidSynap()
 {
-	camPlayVideos({video: "MBDEMO9_MSG", type: CAMP_MSG});
+	camPlayVideos({video: "MBDEMO9_MSG", type: MISS_MSG});
 }
 //-----------------------------------Game Mechanics--------------------------------------
+function sendScavAttack()
+{
+	camManageGroup(camMakeGroup("scavGroup0"), CAM_ORDER_ATTACK, {
+		morale: 50,
+		fallback: camMakePos("base1Assembly"),
+		regroup: false,
+		count: -1
+	});
+}
 function grantStartTech()
 {
 	const TECH = [

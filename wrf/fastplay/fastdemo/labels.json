@@ -114,6 +114,11 @@
 		"pos1": [256, 9088],
 		"pos2": [1920, 9472]
 	},
+	"area_12": {
+		"label": "scavGroup0",
+		"pos1": [5760, 15872],
+		"pos2": [6400, 16896]
+	},
 	"area_13": {
 		"label": "np2Trigger",
 		"subscriber": 0,
