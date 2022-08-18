@@ -51,6 +51,10 @@
 		"label": "base92Assembly",
 		"pos": [1095, 3415]
 	},
+	"position_13": {
+		"label": "NPBlitzPos",
+		"pos": [12544, 1664]
+	},
 	"area_0": {
 		"label": "landingZone",
 		"pos1": [960, 15570],
@@ -138,8 +142,9 @@
 	},
 	"area_21": {
 		"label": "npFinal",
-		"pos1": [5632, 1536],
-		"pos2": [8192, 2560]
+		"subscriber": 0,
+		"pos1": [384, 1664],
+		"pos2": [2432, 2944]
 	},
 	"object_0": {
 		"label": "base1Factory",

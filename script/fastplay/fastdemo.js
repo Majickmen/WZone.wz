@@ -4,7 +4,7 @@
 //to the player. Limit of 12 oil resources and small attack waves result in a calulated
 //approach to achieving victory in this setting. Includes use of 3 altered video files
 //inside sequences.wz and 2 altered audio files included.
-//Current Version Alpha 1.1.0
+//Current Version Alpha 1.2.0
 //Missing code sections:
 //    Enemy LZ reinforcements
 //    Enemy Ground reinforcements
@@ -55,6 +55,7 @@ const NEW_PARADIGM_RES3 = [
 ];
 //-------------------------------------Variables-----------------------------------------
 var radarTower
+var Wave
 //-----------------------------------Event Triggers--------------------------------------
 camAreaEvent("factory1Trigger", function()
 {
@@ -62,7 +63,6 @@ camAreaEvent("factory1Trigger", function()
 	camEnableFactory("base1Factory");
 	camPlayVideos({video: "MBDEMO_MSG", type: MISS_MSG});
 	queue("sendScavAttack");
-	//Activate group of 8 babapeople and 2 babatrikes to attack player=======
 });
 camAreaEvent("factory2Trigger", function()
 {
@@ -92,7 +92,8 @@ camAreaEvent("np2Trigger", function()
 	camEnableFactory("base7Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO5_MSG", type: MISS_MSG}]);
 });
-function eventAttacked(victim, structure) {
+function eventAttacked(victim, structure)
+{
 //Made to detect if a np struct is gone before playing a warning message when first -----
 //attacking np units.--------------------------------------------------------------------
 //Doesn't work ai but it at least is usable as is, without errors. not cleaning it up.---
@@ -131,8 +132,30 @@ function NPWarning(args)
 //---------------------------------------------------------------------------------------
 camAreaEvent("npFinal", function()
 {
-//========================================================================
+	var Wave = 10
+	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(2)));
 });
+function NPBlitz()
+{
+	if (Wave !== 0)
+	{
+		Wave -= 1;
+		var TankNum = 8 + camRand(6);
+		var list = [cTempl.nphtmor, cTempl.nphtsen, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
+		var droids = [];
+		for (var i = 0; i < TankNum; ++i)
+		{
+			droids.push(list[camRand(list.length)]);
+		}
+		camSendReinforcement(NEW_PARADIGM, camMakePos("NPBlitzPos"), droids, CAM_REINFORCE_GROUND);
+		camPlayVideos(["pcv902.ogg"]);
+		//hackAddMessage() place blip at NPBlitzPos=============================
+	}
+	if (Wave === 0)
+	{
+		removeTimer("NPBlitz");
+	}
+}
 //------------------------------Mission Objective Videos---------------------------------
 function camAritifactPickup_artifactpos()
 {

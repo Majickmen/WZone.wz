@@ -59,6 +59,13 @@ npmsens: { body: "Body8MBT", prop: "HalfTrack", weap: "SensorTurret1Mk1" },
 
 // SUB_1_7
 
+//Fastmod
+nphtmor: { body: "Body12SUP", prop: "tracked01", weap: "Mortar2Mk1" },
+nphtsen: { body: "Body12SUP", prop: "tracked01", weap: "SensorTurret1Mk1" },
+nphthmg: { body: "Body12SUP", prop: "tracked01", weap: "MG3Mk1" },
+nphtmrp: { body: "Body12SUP", prop: "tracked01", weap: "Rocket-Pod" },
+nphtca2: { body: "Body12SUP", prop: "tracked01", weap: "Cannon2A-TMk1" },
+
 // CAM_1_D
 npcybr: { body: "CyborgLightBody", prop: "CyborgLegs", weap: "CyborgRocket" },
 nphmgh: { body: "Body8MBT", prop: "hover01", weap: "MG3Mk1" },
