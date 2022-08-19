@@ -92,103 +92,18 @@ camAreaEvent("np2Trigger", function()
 	camEnableFactory("base7Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO5_MSG", type: MISS_MSG}]);
 });
-function eventAttacked(victim, structure)
-{
-//Made to detect if a np struct is gone before playing a warning message when first -----
-//attacking np units.--------------------------------------------------------------------
-//Doesn't work ai but it at least is usable as is, without errors. not cleaning it up.---
-//Will trigger even if struct is still around, but at least I can tag this to------------
-//activate the first np factory.---------------------------------------------------------
-	if (!camDef(structure) || !structure || structure.id !== radarTower.id)
-	{
-		if (!camDef(victim) || !victim || victim.player === CAM_HUMAN_PLAYER)
-		{
-			return;
-		}
-		if (victim.player === NEW_PARADIGM)
-		{
-			camCallOnce("NPWarning");
-		}
-	}
-	else
-	{
-		return;
-	}
-}
-function NPWarning(args)
-{
-	camCompleteRequiredResearch(NEW_PARADIGM_RES1, NEW_PARADIGM);
-	camEnableFactory("base51Factory");
-	camPlayVideos(["pcv901.ogg", {video: "MBDEMO4_MSG", type: MISS_MSG}, "pcv900.ogg"]);
-}
-//---------------------------------------------------------------------Unfinished Section
-//
-//UNFINISHED CODE
-//add np transport and ground reinforcements, add templates for np mantis units,
-//code for ground waves, after a 2 minute warning every 1 minute for 6 waves[100]
-//after destroying 3rd np base. and 10 transport waves[100] every 1 minutes after
-//destroying/passing by scavBase4. First transport arrives on trigger.
-//
-//---------------------------------------------------------------------------------------
-camAreaEvent("enemyLZtrigger", function()
-{
-	var lzWave = 10;
-	setTimer("NPLZReinforcements", camChangeOnDiff(camMinutesToMilliseconds(1)));
-	camPlayVideos(["pcv382.ogg"]);
-});
-function NPLZReinforcements()
-{
-	if (lzWave !== 0)
-	{
-		lzWave -= 1;
-		var tdroids = [cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
-		camSendReinforcement(NEW_PARADIGM, camMakePos("NPLZPos"), tdroids, CAM_REINFORCE_TRANSPORT,
-			{
-				entry: { x: 99, y: 42 },
-				exit: { x: 0, y: 0 },
-				order: CAM_ORDER_ATTACK,
-				data: {
-					regroup: false,
-					count: -1,
-					pos: camMakePos("enemyLZ"),
-					repair: 66,
-				},
-			}
-		);
-		camPlayVideos(["pcv381.ogg"]);
-		//hackAddMessage() place blip at enemyLZ================================
-	}
-	if (lzWave === 0)
-	{
-		removeTimer("NPLZReinforcements");
-	}
-}
 camAreaEvent("npFinal", function()
 {
 	var Wave = 10;
 	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(2)));
 });
-function NPBlitz()
+camAreaEvent("enemyLZtrigger", function()
 {
-	if (Wave !== 0)
-	{
-		Wave -= 1;
-		var TankNum = 8 + camRand(6);
-		var list = [cTempl.nphtmor, cTempl.nphtsen, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
-		var droids = [];
-		for (var i = 0; i < TankNum; ++i)
-		{
-			droids.push(list[camRand(list.length)]);
-		}
-		camSendReinforcement(NEW_PARADIGM, camMakePos("NPBlitzPos"), droids, CAM_REINFORCE_GROUND);
-		camPlayVideos(["pcv902.ogg"]);
-		//hackAddMessage() place blip at NPBlitzPos=============================
-	}
-	if (Wave === 0)
-	{
-		removeTimer("NPBlitz");
-	}
-}
+	var lzWave = 10;
+	setTimer("NPLZReinforcements", camChangeOnDiff(camSecondsToMilliseconds(60)));
+	camPlayVideos(["pcv382.ogg"]);
+	//hackAddMessage() reveal enemyLZ========================================
+});
 //------------------------------Mission Objective Videos---------------------------------
 function camArtifactPickup_artifactpos()
 {
@@ -223,6 +138,89 @@ function sendScavAttack()
 		regroup: false,
 		count: -1
 	});
+}
+function NPLZReinforcements()
+{
+	if (lzWave !== 0)
+	{
+		lzWave -= 1;
+			if (difficulty === HARD || difficulty === INSANE)
+			{
+				var tdroids = [cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
+			}
+			else
+			{
+				var tdroids = [cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2,cTempl.nphthmg, cTempl.nphtmrp];
+			}
+		camSendReinforcement(NEW_PARADIGM, camMakePos("NPLZPos"), tdroids, CAM_REINFORCE_TRANSPORT,
+			{
+				entry: { x: 99, y: 42 },
+				exit: { x: 0, y: 0 },
+				order: CAM_ORDER_ATTACK,
+				data: {
+					regroup: false,
+					count: -1,
+					pos: camMakePos("enemyLZ"),
+					repair: 66,
+				},
+			}
+		);
+		//hackAddMessage() place blip at enemyLZ================================
+	}
+	if (lzWave === 0)
+	{
+		removeTimer("NPLZReinforcements");
+	}
+}
+function NPBlitz()
+{
+	if (Wave !== 0)
+	{
+		Wave -= 1;
+		var TankNum = 8 + camRand(6);
+		var list = [cTempl.nphtmor, cTempl.nphtsen, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
+		var droids = [];
+		for (var i = 0; i < TankNum; ++i)
+		{
+			droids.push(list[camRand(list.length)]);
+		}
+		camSendReinforcement(NEW_PARADIGM, camMakePos("NPBlitzPos"), droids, CAM_REINFORCE_GROUND);
+		camPlayVideos(["pcv902.ogg"]);
+		//hackAddMessage() place blip at NPBlitzPos=============================
+	}
+	if (Wave === 0)
+	{
+		removeTimer("NPBlitz");
+	}
+}
+function eventAttacked(victim, structure)
+{
+//Made to detect if a np struct is gone before playing a warning message when first -----
+//attacking np units.--------------------------------------------------------------------
+//Doesn't work ai but it at least is usable as is, without errors. not cleaning it up.---
+//Will trigger even if struct is still around, but at least I can tag this to------------
+//activate the first np factory.---------------------------------------------------------
+	if (!camDef(structure) || !structure || structure.id !== radarTower.id)
+	{
+		if (!camDef(victim) || !victim || victim.player === CAM_HUMAN_PLAYER)
+		{
+			return;
+		}
+		if (victim.player === NEW_PARADIGM)
+		{
+			camCallOnce("NPWarning");
+		}
+	}
+	else
+	{
+		return;
+	}
+}
+function NPWarning(args)
+{
+	camCompleteRequiredResearch(NEW_PARADIGM_RES1, NEW_PARADIGM);
+	camEnableFactory("base51Factory");
+	camPlayVideos(["pcv901.ogg", {video: "MBDEMO4_MSG", type: MISS_MSG}, "pcv900.ogg"]);
 }
 function grantStartTech()
 {
@@ -320,7 +318,7 @@ function eventStartLevel()
 		"base82Factory": { tech: "R-Comp-SynapticLink" },
 		"base92Factory": { tech: "R-Struc-Factory-Cyborg" },
 	});
-//------------------------------------Enemy Forces---------------------------------------
+//----------------------------------Enemy Factories--------------------------------------
 	camSetFactories({
 		"base1Factory": {
 			assembly: "base1Assembly",
