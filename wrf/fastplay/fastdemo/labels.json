@@ -55,6 +55,10 @@
 		"label": "NPBlitzPos",
 		"pos": [12544, 1664]
 	},
+	"position_13": {
+		"label": "NPLZPos",
+		"pos": [7872, 832]
+	},
 	"area_0": {
 		"label": "landingZone",
 		"pos1": [960, 15570],
@@ -110,13 +114,13 @@
 		"label": "factory2Trigger",
 		"subscriber": 0,
 		"pos1": [2432, 12416],
-		"pos2": [2688, 13952]
+		"pos2": [2816, 14080]
 	},
 	"area_11": {
 		"label": "factory3Trigger",
 		"subscriber": 0,
 		"pos1": [256, 9088],
-		"pos2": [1920, 9472]
+		"pos2": [2048, 9600]
 	},
 	"area_12": {
 		"label": "scavGroup0",
@@ -136,11 +140,17 @@
 		"pos2": [8832, 8064]
 	},
 	"area_15": {
-		"label": "enemyLZ",
+		"label": "enemylandingZone",
 		"pos1": [7680, 640],
-		"pos2": [7936, 896]
+		"pos2": [8064, 1024]
 	},
-	"area_21": {
+	"area_16": {
+		"label": "enemyLZtrigger",
+		"subscriber": 0,
+		"pos1": [5504, 2048],
+		"pos2": [7936, 3328]
+	},
+	"area_17": {
 		"label": "npFinal",
 		"subscriber": 0,
 		"pos1": [384, 1664],

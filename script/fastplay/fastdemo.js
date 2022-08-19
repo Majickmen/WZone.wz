@@ -4,10 +4,9 @@
 //to the player. Limit of 12 oil resources and small attack waves result in a calulated
 //approach to achieving victory in this setting. Includes use of 3 altered video files
 //inside sequences.wz and 2 altered audio files included.
-//Current Version Alpha 1.2.0
+//Current Version Alpha 1.2.1
 //Missing code sections:
 //    Enemy LZ reinforcements
-//    Enemy Ground reinforcements
 //    Player LZ intro and include a set unit list determined by Difficulty
 //      Easy: 	2 trucks, 6 Machinegun, 2 Repair
 //      Medium:	2 trucks, 8 Machinegun
@@ -56,6 +55,7 @@ const NEW_PARADIGM_RES3 = [
 //-------------------------------------Variables-----------------------------------------
 var radarTower
 var Wave
+var lzWave
 //-----------------------------------Event Triggers--------------------------------------
 camAreaEvent("factory1Trigger", function()
 {
@@ -130,9 +130,42 @@ function NPWarning(args)
 //destroying/passing by scavBase4. First transport arrives on trigger.
 //
 //---------------------------------------------------------------------------------------
+camAreaEvent("enemyLZtrigger", function()
+{
+	var lzWave = 10;
+	setTimer("NPLZReinforcements", camChangeOnDiff(camMinutesToMilliseconds(1)));
+	camPlayVideos(["pcv382.ogg"]);
+});
+function NPLZReinforcements()
+{
+	if (lzWave !== 0)
+	{
+		lzWave -= 1;
+		var tdroids = [cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
+		camSendReinforcement(NEW_PARADIGM, camMakePos("NPLZPos"), tdroids, CAM_REINFORCE_TRANSPORT,
+			{
+				entry: { x: 99, y: 42 },
+				exit: { x: 0, y: 0 },
+				order: CAM_ORDER_ATTACK,
+				data: {
+					regroup: false,
+					count: -1,
+					pos: camMakePos("enemyLZ"),
+					repair: 66,
+				},
+			}
+		);
+		camPlayVideos(["pcv381.ogg"]);
+		//hackAddMessage() place blip at enemyLZ================================
+	}
+	if (lzWave === 0)
+	{
+		removeTimer("NPLZReinforcements");
+	}
+}
 camAreaEvent("npFinal", function()
 {
-	var Wave = 10
+	var Wave = 10;
 	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(2)));
 });
 function NPBlitz()
@@ -157,7 +190,7 @@ function NPBlitz()
 	}
 }
 //------------------------------Mission Objective Videos---------------------------------
-function camAritifactPickup_artifactpos()
+function camArtifactPickup_artifactpos()
 {
 	camCallOnce("VidPmod");
 }
@@ -165,7 +198,7 @@ function camArtifactPickup_base2Command()
 {
 	camCallOnce("VidComm");
 }
-function camAritifactPickup_base82Factory()
+function camArtifactPickup_base82Factory()
 {
 	camCallOnce("VidSynap");
 }
@@ -214,9 +247,10 @@ function eventStartLevel()
 	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined);
 	var startpos = getObject("startPosition");
 	var lz = getObject("landingZone");
-	var enemyLz = getObject("enemyLZ");
+	var enemyLZ = getObject("enemylandingZone");
 	centreView(startpos.x, startpos.y);
 	setNoGoArea(lz.x, lz.y, lz.x2, lz.y2, CAM_HUMAN_PLAYER);
+	setNoGoArea(enemyLZ.x, enemyLZ.y, enemyLZ.x2, enemyLZ.y2, NEW_PARADIGM);
 	setReinforcementTime(-1);
 	setMissionTime(-1);
 	grantStartTech();
