@@ -4,13 +4,8 @@
 //to the player. Limit of 12 oil resources and small attack waves result in a calulated
 //approach to achieving victory in this setting. Includes use of 3 altered video files
 //inside sequences.wz and 2 altered audio files included.
-//Current Version Alpha 1.2.1
-//Missing code sections:
-//    Enemy LZ reinforcements
-//    Player LZ intro and include a set unit list determined by Difficulty
-//      Easy: 	2 trucks, 6 Machinegun, 2 Repair
-//      Medium:	2 trucks, 8 Machinegun
-//      Hard: 	2 trucks
+//Uses Campaign difficutly to determine starting units
+//Current Version Beta 1.0.0
 //-------------------------------------Resources-----------------------------------------
 include("script/campaign/libcampaign.js");
 include("script/campaign/templates.js");
@@ -52,10 +47,6 @@ const NEW_PARADIGM_RES3 = [
 	"R-Vehicle-Engine03", "R-Struc-RprFac-Upgrade03", "R-Wpn-Rocket-Damage03",
 	"R-Vehicle-Metals03", "R-Wpn-RocketSlow-Damage03", "R-Cyborg-Metals03",
 ];
-//-------------------------------------Variables-----------------------------------------
-var radarTower
-var Wave
-var lzWave
 //-----------------------------------Event Triggers--------------------------------------
 camAreaEvent("factory1Trigger", function()
 {
@@ -94,12 +85,10 @@ camAreaEvent("np2Trigger", function()
 });
 camAreaEvent("npFinal", function()
 {
-	var Wave = 10;
 	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(2)));
 });
 camAreaEvent("enemyLZtrigger", function()
 {
-	var lzWave = 10;
 	setTimer("NPLZReinforcements", camChangeOnDiff(camSecondsToMilliseconds(60)));
 	camPlayVideos(["pcv382.ogg"]);
 	//hackAddMessage() reveal enemyLZ========================================
@@ -130,6 +119,23 @@ function VidSynap()
 	camPlayVideos({video: "MBDEMO9_MSG", type: MISS_MSG});
 }
 //-----------------------------------Game Mechanics--------------------------------------
+function playerUnits()
+{
+	if (difficulty === HARD || difficulty === INSANE)
+	{
+		var pdroids = [];
+	}
+	if (difficulty === MEDIUM)
+	{
+		var pdroids = [cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1];
+	}
+	if (difficulty === EASY)
+	{
+		var pdroids = [cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwmg1, cTempl.tpvwrep, cTempl.tpvwrep];
+	}
+	camSendReinforcement(CAM_HUMAN_PLAYER, camMakePos("landingZone"), pdroids, CAM_REINFORCE_GROUND);
+	camPlayVideos(["pcv901.ogg", {video: "MBDEMO6_MSG", type: MISS_MSG}]);
+}
 function sendScavAttack()
 {
 	camManageGroup(camMakeGroup("scavGroup0"), CAM_ORDER_ATTACK, {
@@ -195,11 +201,6 @@ function NPBlitz()
 }
 function eventAttacked(victim, structure)
 {
-//Made to detect if a np struct is gone before playing a warning message when first -----
-//attacking np units.--------------------------------------------------------------------
-//Doesn't work ai but it at least is usable as is, without errors. not cleaning it up.---
-//Will trigger even if struct is still around, but at least I can tag this to------------
-//activate the first np factory.---------------------------------------------------------
 	if (!camDef(structure) || !structure || structure.id !== radarTower.id)
 	{
 		if (!camDef(victim) || !victim || victim.player === CAM_HUMAN_PLAYER)
@@ -242,9 +243,11 @@ function grantStartTech()
 function eventStartLevel()
 {
 	setAlliance(NEW_PARADIGM, SCAV_7, true);
-	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined);
 	var startpos = getObject("startPosition");
+	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined);
 	var lz = getObject("landingZone");
+	var lzWave = (10);
+	var Wave = (10);
 	var enemyLZ = getObject("enemylandingZone");
 	centreView(startpos.x, startpos.y);
 	setNoGoArea(lz.x, lz.y, lz.x2, lz.y2, CAM_HUMAN_PLAYER);
@@ -401,6 +404,5 @@ function eventStartLevel()
 //----------------------------Start of Mission Event Queue-------------------------------
 	radarTower = getObject("radarTower");
 	camPlayVideos({video: "MBDEMO1_MSG", type: MISS_MSG});
-//have transport drop units at starting point then camPlayVideos
-//(["pcv901.ogg", {video: "MBDEMO6_MSG", type: MISS_MSG}]);
+	queue("playerUnits", camSecondsToMilliseconds(1))
 }

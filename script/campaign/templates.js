@@ -1,6 +1,16 @@
 var cTempl = {
 ////////////////////////////////////////////////////////////////////////////////
 
+//Fastmod
+nphtmor: { body: "Body12SUP", prop: "tracked01", weap: "Mortar2Mk1" },
+nphtsen: { body: "Body12SUP", prop: "tracked01", weap: "SensorTurret1Mk1" },
+nphthmg: { body: "Body12SUP", prop: "tracked01", weap: "MG3Mk1" },
+nphtmrp: { body: "Body12SUP", prop: "tracked01", weap: "Rocket-Pod" },
+nphtca2: { body: "Body12SUP", prop: "tracked01", weap: "Cannon2A-TMk1" },
+tpvwtru: { body: "Body1REC", prop: "wheeled01", weap: "Spade1Mk1" },
+tpvwrep: { body: "Body1REC", prop: "wheeled01", weap: "LightRepair1" },
+tpvwmg1: { body: "Body1REC", prop: "wheeled01", weap: "MG1Mk1" },
+
 // CAM_1A
 bloke: { body: "B1BaBaPerson01", prop: "BaBaLegs", weap: "BabaMG" },
 trike: { body: "B4body-sml-trike01", prop: "BaBaProp", weap: "BabaTrikeMG" },
@@ -58,13 +68,6 @@ npmorb: { body: "Body8MBT", prop: "HalfTrack", weap: "Mortar2Mk1" },
 npmsens: { body: "Body8MBT", prop: "HalfTrack", weap: "SensorTurret1Mk1" },
 
 // SUB_1_7
-
-//Fastmod
-nphtmor: { body: "Body12SUP", prop: "tracked01", weap: "Mortar2Mk1" },
-nphtsen: { body: "Body12SUP", prop: "tracked01", weap: "SensorTurret1Mk1" },
-nphthmg: { body: "Body12SUP", prop: "tracked01", weap: "MG3Mk1" },
-nphtmrp: { body: "Body12SUP", prop: "tracked01", weap: "Rocket-Pod" },
-nphtca2: { body: "Body12SUP", prop: "tracked01", weap: "Cannon2A-TMk1" },
 
 // CAM_1_D
 npcybr: { body: "CyborgLightBody", prop: "CyborgLegs", weap: "CyborgRocket" },

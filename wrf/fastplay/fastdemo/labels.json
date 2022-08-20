@@ -59,6 +59,14 @@
 		"label": "NPLZPos",
 		"pos": [7872, 832]
 	},
+	"position_14": {
+		"label": "transporterEntry",
+		"pos": [4352, 17920]
+	},
+	"position_15": {
+		"label": "transporterExit",
+		"pos": [1024, 17920]
+	},
 	"area_0": {
 		"label": "landingZone",
 		"pos1": [960, 15570],
