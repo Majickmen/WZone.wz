@@ -2,6 +2,14 @@ var cTempl = {
 ////////////////////////////////////////////////////////////////////////////////
 
 //Fastmod
+nplhtmg: { body: "Body4ABT", prop: "HalfTrack", weap: "MG1Mk1" },
+nplhtc1: { body: "Body4ABT", prop: "HalfTrack", weap: "Cannon1Mk1" },
+nplhtfl: { body: "Body4ABT", prop: "HalfTrack", weap: "Flame1Mk1" },
+npmhtc1: { body: "Body8MBT", prop: "HalfTrack", weap: "Cannon1Mk1" },
+npmhttw: { body: "Body8MBT", prop: "HalfTrack", weap: "MG2Mk1" },
+npmhtrp: { body: "Body8MBT", prop: "HalfTrack", weap: "Rocket-Pod" },
+npmhtmo: { body: "Body8MBT", prop: "HalfTrack", weap: "Mortar1Mk1" },
+npmhtse: { body: "Body8MBT", prop: "HalfTrack", weap: "SensorTurret1Mk1" },
 nphtmor: { body: "Body12SUP", prop: "tracked01", weap: "Mortar2Mk1" },
 nphtsen: { body: "Body12SUP", prop: "tracked01", weap: "SensorTurret1Mk1" },
 nphthmg: { body: "Body12SUP", prop: "tracked01", weap: "MG3Mk1" },

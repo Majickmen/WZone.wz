@@ -265,5 +265,35 @@
 		"id": 443,
 		"player": 1,
 		"type": 1
+	},
+	"radius_0": {
+		"label": "removeObjectiveBlip0",
+		"subscriber": 0,
+		"pos": [3136, 13760],
+		"radius": 640
+	},
+	"radius_1": {
+		"label": "removeObjectiveBlip1",
+		"subscriber": 0,
+		"pos": [5440, 10304],
+		"radius": 640
+	},
+	"radius_2": {
+		"label": "removeObjectiveBlip2",
+		"subscriber": 0,
+		"pos": [11904, 12800],
+		"radius": 640
+	},
+	"radius_3": {
+		"label": "removeObjectiveBlip3",
+		"subscriber": 0,
+		"pos": [8064, 7296],
+		"radius": 640
+	},
+	"radius_4": {
+		"label": "removeObjectiveBlip4",
+		"subscriber": 0,
+		"pos": [512, 1792],
+		"radius": 1240
 	}
 }

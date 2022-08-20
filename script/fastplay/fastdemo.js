@@ -9,6 +9,8 @@
 //-------------------------------------Resources-----------------------------------------
 include("script/campaign/libcampaign.js");
 include("script/campaign/templates.js");
+var lzWave
+var Wave
 //---------------------------------Enemy ID and Tech-------------------------------------
 const SCAVENGER_PLAYER = 7;
 const SCAVENGER_RES1 = [
@@ -54,6 +56,7 @@ camAreaEvent("factory1Trigger", function()
 	camEnableFactory("base1Factory");
 	camPlayVideos({video: "MBDEMO_MSG", type: MISS_MSG});
 	queue("sendScavAttack");
+	hackAddMessage("FAST_OBJ1", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 camAreaEvent("factory2Trigger", function()
 {
@@ -65,7 +68,7 @@ camAreaEvent("factory3Trigger", function()
 	camCompleteRequiredResearch(SCAVENGER_RES3, SCAV_7);
 	camEnableFactory("base3Factory");
 	camPlayVideos({video: "MBDEMO2_MSG", type: MISS_MSG});
-	//hackAddMessage() place blip on scav base 3=============================
+	hackAddMessage("FAST_OBJ2", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 camAreaEvent("np3Trigger", function()
 {
@@ -75,6 +78,7 @@ camAreaEvent("np3Trigger", function()
 	camEnableFactory("base81Factory");
 	camEnableFactory("base91Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO3_MSG", type: MISS_MSG}]);
+	hackAddMessage("FAST_OBJ5", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 camAreaEvent("np2Trigger", function()
 {
@@ -82,6 +86,7 @@ camAreaEvent("np2Trigger", function()
 	camEnableFactory("base6Factory");
 	camEnableFactory("base7Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO5_MSG", type: MISS_MSG}]);
+	hackAddMessage("FAST_OBJ4", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 camAreaEvent("npFinal", function()
 {
@@ -92,6 +97,26 @@ camAreaEvent("enemyLZtrigger", function()
 	setTimer("NPLZReinforcements", camChangeOnDiff(camSecondsToMilliseconds(60)));
 	camPlayVideos(["pcv382.ogg"]);
 	//hackAddMessage() reveal enemyLZ========================================
+});
+camAreaEvent("removeObjectiveBlip0", function()
+{
+	hackRemoveMessage("FAST_OBJ1", PROX_MSG, CAM_HUMAN_PLAYER);
+});
+camAreaEvent("removeObjectiveBlip1", function()
+{
+	hackRemoveMessage("FAST_OBJ2", PROX_MSG, CAM_HUMAN_PLAYER);
+});
+camAreaEvent("removeObjectiveBlip2", function()
+{
+	hackRemoveMessage("FAST_OBJ3", PROX_MSG, CAM_HUMAN_PLAYER);
+});
+camAreaEvent("removeObjectiveBlip3", function()
+{
+	hackRemoveMessage("FAST_OBJ4", PROX_MSG, CAM_HUMAN_PLAYER);
+});
+camAreaEvent("removeObjectiveBlip4", function()
+{
+	hackRemoveMessage("FAST_OBJ5", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 //------------------------------Mission Objective Videos---------------------------------
 function camArtifactPickup_artifactpos()
@@ -171,11 +196,12 @@ function NPLZReinforcements()
 				},
 			}
 		);
-		//hackAddMessage() place blip at enemyLZ================================
+		hackAddMessage("FAST_OBJ6", PROX_MSG, CAM_HUMAN_PLAYER);
 	}
 	if (lzWave === 0)
 	{
 		removeTimer("NPLZReinforcements");
+		hackRemoveMessage("FAST_OBJ6", PROX_MSG, CAM_HUMAN_PLAYER);
 	}
 }
 function NPBlitz()
@@ -192,11 +218,12 @@ function NPBlitz()
 		}
 		camSendReinforcement(NEW_PARADIGM, camMakePos("NPBlitzPos"), droids, CAM_REINFORCE_GROUND);
 		camPlayVideos(["pcv902.ogg"]);
-		//hackAddMessage() place blip at NPBlitzPos=============================
+		hackAddMessage("FAST_OBJ7", PROX_MSG, CAM_HUMAN_PLAYER);
 	}
 	if (Wave === 0)
 	{
 		removeTimer("NPBlitz");
+		hackRemoveMessage("FAST_OBJ7", PROX_MSG, CAM_HUMAN_PLAYER);
 	}
 }
 function eventAttacked(victim, structure)
@@ -222,6 +249,7 @@ function NPWarning(args)
 	camCompleteRequiredResearch(NEW_PARADIGM_RES1, NEW_PARADIGM);
 	camEnableFactory("base51Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO4_MSG", type: MISS_MSG}, "pcv900.ogg"]);
+	hackAddMessage("FAST_OBJ3", PROX_MSG, CAM_HUMAN_PLAYER);
 }
 function grantStartTech()
 {
