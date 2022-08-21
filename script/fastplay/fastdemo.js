@@ -90,11 +90,11 @@ camAreaEvent("np2Trigger", function()
 });
 camAreaEvent("npFinal", function()
 {
-	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(2)));
+	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(5)));
 });
 camAreaEvent("enemyLZtrigger", function()
 {
-	setTimer("NPLZReinforcements", camChangeOnDiff(camSecondsToMilliseconds(60)));
+	setTimer("NPLZReinforcements", camChangeOnDiff(camMinutesToMilliseconds(3)));
 	camPlayVideos(["pcv382.ogg"]);
 	//hackAddMessage() reveal enemyLZ========================================
 });
@@ -177,11 +177,11 @@ function NPLZReinforcements()
 		lzWave -= 1;
 			if (difficulty === HARD || difficulty === INSANE)
 			{
-				var tdroids = [cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
+				var tdroids = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhttw, cTempl.npmhttw, cTempl.npmhtc1];
 			}
 			else
 			{
-				var tdroids = [cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2,cTempl.nphthmg, cTempl.nphtmrp];
+				var tdroids = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhtc1, cTempl.npmhttw];
 			}
 		camSendReinforcement(NEW_PARADIGM, camMakePos("NPLZPos"), tdroids, CAM_REINFORCE_TRANSPORT,
 			{
@@ -254,7 +254,7 @@ function NPWarning(args)
 function grantStartTech()
 {
 	const TECH = [
-		"R-Wpn-MG1Mk1","R-Vehicle-Body01", "R-Sys-Spade1Mk1", "R-Vehicle-Prop-Wheels"
+		"R-Wpn-MG1Mk1","R-Vehicle-Body01", "R-Sys-Spade1Mk1", "R-Vehicle-Prop-Wheels", "R-Defense-HardcreteWall"
 	];
 	const STRUCTS = [
 		"A0CommandCentre", "A0PowerGenerator", "A0ResourceExtractor",
