@@ -1,6 +1,6 @@
 # WZone.wz
-A mod to replace the fastplay mission, with a stripped down single map version of Campaign 1 Because just a small map against 3 scav bases is too boring, but playing a full campaign can take too long.
-Not a finished version as there are aspects of the coding, in which i am not yet fully capable of understanding.
+A mod to replace the fastplay mission, with a stripped down single map version of Alpha Campaign. Because just a small map against 3 scav bases is too boring, but playing a full campaign can take too long.
+Not a finished version as there are aspects balancing I can't do alone.
 However it is a ready to play version of the mod.
 
 To play this mod simply add WZone.wz & sequences.wz to your \AppData\Roaming\Warzone 2100 Project\Warzone 2100\mods\4.2.7\autoload and then run the game and select tutorial\fastplay.
