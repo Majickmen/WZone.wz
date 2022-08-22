@@ -1267,11 +1267,6 @@
 		"keyTopic": 1,
 		"msgName": "RES_DF_HCW1",
 		"name": "Hardcrete",
-		"redStructures": [
-			"GuardTower1MG",
-			"GuardTower3",
-			"GuardTower4"
-		],
 		"requiredResearch": [
 			"R-Sys-Engineering01"
 		],
