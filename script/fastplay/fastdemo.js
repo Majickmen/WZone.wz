@@ -344,7 +344,7 @@ function eventStartLevel()
 		"base1Research": { tech: "R-Struc-Factory-Module" },
 		"base2Research": { tech: "R-Struc-Power-Upgrade01" },
 		"base3Research": { tech: "R-Struc-Research-Upgrade01" },
-		"base4Research": { tech: "R-Vehicle-Engine01" },
+		"base4Research": { tech: "R-Vehicle-Engine02" },
 		"base2Command": { tech: "R-Struc-CommandRelay" },
 		"base82Factory": { tech: "R-Comp-SynapticLink" },
 		"base92Factory": { tech: "R-Struc-Factory-Cyborg" },
