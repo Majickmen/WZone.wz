@@ -9,8 +9,8 @@
 //-------------------------------------Resources-----------------------------------------
 include("script/campaign/libcampaign.js");
 include("script/campaign/templates.js");
-var lzWave
-var Wave
+var lzWave;
+var Wave;
 //---------------------------------Enemy ID and Tech-------------------------------------
 const SCAVENGER_PLAYER = 7;
 const SCAVENGER_RES1 = [
@@ -174,7 +174,7 @@ function NPLZReinforcements()
 {
 	if (lzWave !== 0)
 	{
-		lzWave -= 1;
+		lzWave = lzWave - 1;
 			if (difficulty === HARD || difficulty === INSANE)
 			{
 				var tdroids = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhttw, cTempl.npmhttw, cTempl.npmhtc1];
@@ -208,7 +208,7 @@ function NPBlitz()
 {
 	if (Wave !== 0)
 	{
-		Wave -= 1;
+		Wave = Wave - 1;
 		var TankNum = 8 + camRand(6);
 		var list = [cTempl.nphtmor, cTempl.nphtsen, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
 		var droids = [];
@@ -274,8 +274,8 @@ function eventStartLevel()
 	var startpos = getObject("startPosition");
 	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined);
 	var lz = getObject("landingZone");
-	var lzWave = (10);
-	var Wave = (10);
+	var lzWave = 10;
+	var Wave = 10;
 	var enemyLZ = getObject("enemylandingZone");
 	centreView(startpos.x, startpos.y);
 	setNoGoArea(lz.x, lz.y, lz.x2, lz.y2, CAM_HUMAN_PLAYER);
@@ -330,14 +330,14 @@ function eventStartLevel()
 	});
 //-------------------------------------Artifacts-----------------------------------------
 	camSetArtifacts({
-		"base1Factory": { tech: "R-Wpn-MG2Mk1" },
+		"base1Factory": { tech: ["R-Wpn-MG2Mk1", "R-Wpn-MG-Damage01"] },
 		"artifactpos": { tech: "R-Struc-PowerModuleMk1" },
 		"radarTower": { tech: "R-Struc-Research-Module" },
 		"base2Factory": { tech: "R-Wpn-Cannon1Mk1" },
-		"base3Factory": { tech: "R-Vehicle-Prop-Halftracks" },
-		"base4Factory": { tech: "R-Wpn-Mortar01Lt" },
-		"base51Factory": { tech: "R-Vehicle-Body05" },
-		"base6Factory": { tech: "R-Wpn-MG3Mk1" },
+		"base3Factory": { tech: ["R-Vehicle-Prop-Halftracks", "R-Sys-MobileRepairTurret01"] },
+		"base4Factory": { tech: ["R-Wpn-Mortar01Lt", "R-Sys-Sensor-Turret01"] },
+		"base51Factory": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
+		"base6Factory": { tech: ["R-Wpn-MG3Mk1", "R-Wpn-Cannon2Mk1"] },
 		"base7Factory": { tech: "R-Wpn-Rocket02-MRL" },
 		"base81Factory": { tech: "R-Wpn-Rocket01-LtAT" },
 		"base91Factory": { tech: "R-Vehicle-Body11" },
@@ -355,77 +355,77 @@ function eventStartLevel()
 			assembly: "base1Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 5,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(5)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(10)),
 			templates: [cTempl.bloke, cTempl.trike]
 		},
 		"base2Factory": {
 			assembly: "base2Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 5,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(6)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(12)),
 			templates: [cTempl.bloketwin, cTempl.triketwin, cTempl.buggy, cTempl.bjeep]
 		},
 		"base3Factory": {
 			assembly: "base3Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 5,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(7)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(14)),
 			templates: [cTempl.blokeheavy, cTempl.trikeheavy, cTempl.buggytwin, cTempl.bjeeptwin]
 		},
 		"base4Factory": {
 			assembly: "base4Assembly",
 			order: CAM_ORDER_DEFEND,
 			groupSize: 5,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(5)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(10)),
 			templates: [cTempl.blokeheavy, cTempl.trikeheavy, cTempl.buggyheavy, cTempl.rbjeepheavy]
 		},
 		"base51Factory": {
 			assembly: "base5Assembly",
 			order: CAM_ORDER_DEFEND,
 			groupSize: 9,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(15)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
 			templates: [cTempl.nphmg]
 		},
 		"base6Factory": {
 			assembly: "base6Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 3,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
 			templates: [cTempl.npblc, cTempl.nphmg]
 		},
 		"base7Factory": {
 			assembly: "base7Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 3,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
 			templates: [cTempl.nphmg, cTempl.npblc]
 		},
 		"base81Factory": {
 			assembly: "base8Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
 			templates: [cTempl.npmrl, cTempl.npblc]
 		},
 		"base91Factory": {
 			assembly: "base9Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
 			templates: [cTempl.npltat, cTempl.nphmg]
 		},
 		"base82Factory": {
 			assembly: "base82Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(15)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(25)),
 			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		},
 		"base92Factory": {
 			assembly: "base92Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(15)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(25)),
 			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		}
 	});
