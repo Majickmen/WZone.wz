@@ -9,8 +9,8 @@
 //-------------------------------------Resources-----------------------------------------
 include("script/campaign/libcampaign.js");
 include("script/campaign/templates.js");
-var lzWave;
-var Wave;
+var lzWave = 10;
+var Wave = 10;
 //---------------------------------Enemy ID and Tech-------------------------------------
 const SCAVENGER_PLAYER = 7;
 const SCAVENGER_RES1 = [
@@ -172,17 +172,24 @@ function sendScavAttack()
 }
 function NPLZReinforcements()
 {
+	if (difficulty === HARD || difficulty === INSANE)
+	{
+		var difnum = 6
+	}
+	else
+	{
+		var difnum = 2
+	}
 	if (lzWave !== 0)
 	{
 		lzWave = lzWave - 1;
-			if (difficulty === HARD || difficulty === INSANE)
-			{
-				var tdroids = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhttw, cTempl.npmhttw, cTempl.npmhtc1];
-			}
-			else
-			{
-				var tdroids = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp, cTempl.npmhtc1, cTempl.npmhttw];
-			}
+		var TankNum = 4 + difnum;
+		var list = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp];
+		var droids = [];
+		for (var i = 0; i < TankNum; ++i)
+		{
+			droids.push(list[camRand(list.length)]);
+		}
 		camSendReinforcement(NEW_PARADIGM, camMakePos("NPLZPos"), tdroids, CAM_REINFORCE_TRANSPORT,
 			{
 				entry: { x: 99, y: 42 },
@@ -192,7 +199,7 @@ function NPLZReinforcements()
 					regroup: false,
 					count: -1,
 					pos: camMakePos("enemyLZ"),
-					repair: 66,
+					repair: 33,
 				},
 			}
 		);
@@ -206,10 +213,18 @@ function NPLZReinforcements()
 }
 function NPBlitz()
 {
+	if (difficulty === HARD || difficulty === INSANE)
+	{
+		var difnum = 3
+	}
+	else
+	{
+		var difnum = 2
+	}
 	if (Wave !== 0)
 	{
 		Wave = Wave - 1;
-		var TankNum = 8 + camRand(6);
+		var TankNum = 3 * difnum;
 		var list = [cTempl.nphtmor, cTempl.nphtsen, cTempl.nphthmg, cTempl.nphtmrp, cTempl.nphtca2];
 		var droids = [];
 		for (var i = 0; i < TankNum; ++i)
@@ -274,8 +289,6 @@ function eventStartLevel()
 	var startpos = getObject("startPosition");
 	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined);
 	var lz = getObject("landingZone");
-	var lzWave = 10;
-	var Wave = 10;
 	var enemyLZ = getObject("enemylandingZone");
 	centreView(startpos.x, startpos.y);
 	setNoGoArea(lz.x, lz.y, lz.x2, lz.y2, CAM_HUMAN_PLAYER);
@@ -332,10 +345,10 @@ function eventStartLevel()
 	camSetArtifacts({
 		"base1Factory": { tech: ["R-Wpn-MG2Mk1", "R-Wpn-MG-Damage01"] },
 		"artifactpos": { tech: "R-Struc-PowerModuleMk1" },
-		"radarTower": { tech: "R-Struc-Research-Module" },
+		"radarTower": { tech: ["R-Sys-Sensor-Turret01", "R-Struc-Research-Module"] },
 		"base2Factory": { tech: "R-Wpn-Cannon1Mk1" },
 		"base3Factory": { tech: ["R-Vehicle-Prop-Halftracks", "R-Sys-MobileRepairTurret01"] },
-		"base4Factory": { tech: ["R-Wpn-Mortar01Lt", "R-Sys-Sensor-Turret01"] },
+		"base4Factory": { tech: "R-Wpn-Mortar01Lt" },
 		"base51Factory": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
 		"base6Factory": { tech: ["R-Wpn-MG3Mk1", "R-Wpn-Cannon2Mk1"] },
 		"base7Factory": { tech: "R-Wpn-Rocket02-MRL" },
