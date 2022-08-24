@@ -9,12 +9,14 @@
 //-------------------------------------Resources-----------------------------------------
 include("script/campaign/libcampaign.js");
 include("script/campaign/templates.js");
+radarTower = getObject("radarTower");
 var lzWave = 10;
 var Wave = 10;
 //---------------------------------Enemy ID and Tech-------------------------------------
 const SCAVENGER_PLAYER = 7;
 const SCAVENGER_RES1 = [
-	"R-Wpn-Flamer-Damage01", "R-Wpn-Flamer-Range01", "R-Wpn-MG-Damage02", "R-Wpn-MG-ROF01",
+	"R-Wpn-Flamer-Damage01", "R-Wpn-Flamer-Range01", "R-Wpn-MG-Damage02",
+	"R-Wpn-MG-ROF01",
 ];
 const SCAVENGER_RES2 = [
 	"R-Wpn-Flamer-Damage02", "R-Wpn-Flamer-ROF01", "R-Wpn-Mortar-Damage02",
@@ -77,6 +79,8 @@ camAreaEvent("np3Trigger", function()
 	camEnableFactory("base4Factory");
 	camEnableFactory("base81Factory");
 	camEnableFactory("base91Factory");
+	camEnableFactory("base82Factory");
+	camEnableFactory("base92Factory");
 	camPlayVideos(["pcv901.ogg", {video: "MBDEMO3_MSG", type: MISS_MSG}]);
 	hackAddMessage("FAST_OBJ5", PROX_MSG, CAM_HUMAN_PLAYER);
 });
@@ -403,47 +407,46 @@ function eventStartLevel()
 			assembly: "base6Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 3,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
 			templates: [cTempl.npblc, cTempl.nphmg]
 		},
 		"base7Factory": {
 			assembly: "base7Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 3,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
 			templates: [cTempl.nphmg, cTempl.npblc]
 		},
 		"base81Factory": {
 			assembly: "base8Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(50)),
 			templates: [cTempl.npmrl, cTempl.npblc]
 		},
 		"base91Factory": {
 			assembly: "base9Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(50)),
 			templates: [cTempl.npltat, cTempl.nphmg]
 		},
 		"base82Factory": {
 			assembly: "base82Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(25)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
 			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		},
 		"base92Factory": {
 			assembly: "base92Assembly",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(25)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
 			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		}
 	});
 //----------------------------Start of Mission Event Queue-------------------------------
-	radarTower = getObject("radarTower");
 	camPlayVideos({video: "MBDEMO1_MSG", type: MISS_MSG});
 	queue("playerUnits", camSecondsToMilliseconds(1))
 }
