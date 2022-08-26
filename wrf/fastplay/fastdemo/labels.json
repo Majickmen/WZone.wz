@@ -16,54 +16,58 @@
 		"pos": [5447, 10690]
 	},
 	"position_4": {
-		"label": "base4Assembly",
+		"label": "base6Assembly1",
 		"pos": [6459, 3781]
 	},
 	"position_5": {
-		"label": "base5Assembly",
-		"pos": [11075, 14024]
+		"label": "base6Assembly2",
+		"pos": [6606, 3781]
 	},
 	"position_6": {
-		"label": "base6Assembly",
-		"pos": [9154, 7372]
+		"label": "base4Assembly",
+		"pos": [11075, 14024]
 	},
 	"position_7": {
-		"label": "base7Assembly",
-		"pos": [9154, 7879]
+		"label": "base5Assembly1",
+		"pos": [9154, 7372]
 	},
 	"position_8": {
-		"label": "base8Assembly",
-		"pos": [584, 3395]
+		"label": "base5Assembly2",
+		"pos": [9154, 7879]
 	},
 	"position_9": {
-		"label": "base9Assembly",
-		"pos": [1093, 3412]
+		"label": "base7Assembly1",
+		"pos": [584, 3395]
 	},
 	"position_10": {
-		"label": "artifactpos",
-		"pos": [3518, 15934]
+		"label": "base7Assembly2",
+		"pos": [1093, 3412]
 	},
 	"position_11": {
-		"label": "base82Assembly",
+		"label": "base7Assembly3",
 		"pos": [712, 3395]
 	},
 	"position_12": {
-		"label": "base92Assembly",
+		"label": "base7Assembly4",
 		"pos": [1221, 3412]
 	},
 	"position_13": {
+		"label": "artifactpos",
+		"pos": [3518, 15934]
+	},
+	"position_14": {
 		"label": "NPBlitzPos",
 		"pos": [12544, 1664]
 	},
-	"position_13": {
+	"position_15": {
 		"label": "NPLZPos",
 		"pos": [7872, 832]
 	},
-	"position_14": {
+	"position_16": {
 		"label": "transporterEntry",
 		"pos": [4352, 17920]
 	},
-	"position_15": {
+	"position_17": {
 		"label": "transporterExit",
 		"pos": [1024, 17920]
 	},
@@ -165,15 +169,15 @@
 		"pos2": [2432, 2944]
 	},
 	"object_0": {
-		"label": "base1Factory",
-		"id": 26,
-		"player": 7,
-		"type": 1
-	},
-	"object_1": {
 		"label": "radarTower",
 		"id": 415,
 		"player": 1,
+		"type": 1
+	},
+	"object_1": {
+		"label": "base1Factory",
+		"id": 26,
+		"player": 7,
 		"type": 1
 	},
 	"object_2": {
@@ -190,79 +194,103 @@
 	},
 	"object_4": {
 		"label": "base4Factory",
-		"id": 206,
-		"player": 7,
+		"id": 129,
+		"player": 1,
 		"type": 1
 	},
 	"object_5": {
-		"label": "base2Command",
+		"label": "base4Command",
 		"id": 457,
 		"player": 1,
 		"type": 1
 	},
 	"object_6": {
-		"label": "base6Factory",
-		"id": 154,
-		"player": 1,
-		"type": 1
-	},
-	"object_7": {
-		"label": "base7Factory",
-		"id": 155,
-		"player": 1,
-		"type": 1
-	},
-	"object_8": {
-		"label": "base82Factory",
-		"id": 322,
-		"player": 1,
-		"type": 1
-	},
-	"object_9": {
-		"label": "base92Factory",
-		"id": 323,
-		"player": 1,
-		"type": 1
-	},
-	"object_10": {
-		"label": "base1Research",
+		"label": "base4Research",
 		"id": 131,
 		"player": 1,
 		"type": 1
 	},
-	"object_11": {
-		"label": "base2Research",
-		"id": 329,
+	"object_7": {
+		"label": "base5Factory1",
+		"id": 154,
 		"player": 1,
 		"type": 1
 	},
+	"object_8": {
+		"label": "base5Factory2",
+		"id": 155,
+		"player": 1,
+		"type": 1
+	},
+	"object_9": {
+		"label": "base5Research",
+		"id": 950,
+		"player": 1,
+		"type": 1
+	},
+	"object_10": {
+		"label": "base6Factory1",
+		"id": 749,
+		"player": 7,
+		"type": 1
+	},
+	"object_11": {
+		"label": "base6Factory2",
+		"id": 750,
+		"player": 7,
+		"type": 1
+	},
 	"object_12": {
-		"label": "base3Research",
-		"id": 330,
+		"label": "base7Factory1",
+		"id": 904,
 		"player": 1,
 		"type": 1
 	},
 	"object_13": {
-		"label": "base4Research",
-		"id": 331,
+		"label": "base7Factory2",
+		"id": 902,
 		"player": 1,
 		"type": 1
 	},
 	"object_14": {
-		"label": "base51Factory",
-		"id": 129,
+		"label": "base7CyFactory1",
+		"id": 849,
 		"player": 1,
 		"type": 1
 	},
 	"object_15": {
-		"label": "base91Factory",
-		"id": 445,
+		"label": "base7CyFactory2",
+		"id": 848,
 		"player": 1,
 		"type": 1
 	},
 	"object_16": {
-		"label": "base81Factory",
-		"id": 443,
+		"label": "base7Research1",
+		"id": 856,
+		"player": 1,
+		"type": 1
+	},
+	"object_17": {
+		"label": "base7Research2",
+		"id": 857,
+		"player": 1,
+		"type": 1
+	},
+	"object_18": {
+		"label": "base7Power",
+		"id": 853,
+		"player": 1,
+		"type": 1
+	},
+	"object_19": {
+		"label": "nanolab",
+		"id": 501,
+		"player": 1,
+		"type": 1
+	},
+	"object_20": {
+		"label": "aerolab",
+		"id": 679,
 		"player": 1,
 		"type": 1
 	},
