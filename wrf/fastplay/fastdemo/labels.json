@@ -242,13 +242,13 @@
 	},
 	"object_12": {
 		"label": "base7Factory1",
-		"id": 904,
+		"id": 901,
 		"player": 1,
 		"type": 1
 	},
 	"object_13": {
 		"label": "base7Factory2",
-		"id": 902,
+		"id": 903,
 		"player": 1,
 		"type": 1
 	},
