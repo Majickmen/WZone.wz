@@ -357,15 +357,15 @@ function eventStartLevel()
 		"base4Command": { tech: "R-Struc-CommandRelay" },
 		"base4Research": { tech: "R-Struc-Research-Module" },
 		"base5Factory1": { tech: "R-Wpn-MG3Mk1" },
-		"base5Factory2": { tech: "R-Vehicle-Body11" },
+		"base5Factory2": { tech: "R-Wpn-Rocket02-MRL" },
 		"base5Research": { tech: "R-Comp-SynapticLink" },
-		"base6Factory1": { tech: "R-Wpn-Rocket02-MRL" },
+		"base6Factory1": { tech: "R-Wpn-Rocket01-LtAT" },
 		"base6Factory2": { tech: "R-Wpn-Cannon2Mk1" },
 		"base7Research1": { tech: "R-Struc-Research-Upgrade01" },
 		"base7Research2": { tech: "R-Vehicle-Engine02" },
 		"base7Power": { tech: "R-Struc-Power-Upgrade01" },
-		"aerolab": { tech: ["R-Wpn-Mortar01Lt", "R-Wpn-Rocket01-LtAT"] },
-		"nanolab": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
+		"aerolab": { tech: ["R-Wpn-Mortar01Lt", "R-Vehicle-Metals01"] },
+		"nanolab": { tech: ["R-Vehicle-Body05", "R-Vehicle-Engine01"] },
 	});
 //----------------------------------Enemy Factories--------------------------------------
 	camSetFactories({
