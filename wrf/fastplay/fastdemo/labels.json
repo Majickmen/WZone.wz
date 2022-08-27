@@ -37,19 +37,19 @@
 	},
 	"position_9": {
 		"label": "base7Assembly1",
-		"pos": [584, 3395]
+		"pos": [704, 2368]
 	},
 	"position_10": {
 		"label": "base7Assembly2",
-		"pos": [1093, 3412]
+		"pos": [1344, 2368]
 	},
 	"position_11": {
 		"label": "base7Assembly3",
-		"pos": [712, 3395]
+		"pos": [704, 2624]
 	},
 	"position_12": {
 		"label": "base7Assembly4",
-		"pos": [1221, 3412]
+		"pos": [960, 2624]
 	},
 	"position_13": {
 		"label": "artifactpos",
@@ -93,8 +93,8 @@
 	},
 	"area_4": {
 		"label": "scavBase4",
-		"pos1": [5504, 3072],
-		"pos2": [7040, 4480]
+		"pos1": [5248, 1408],
+		"pos2": [6784, 2944]
 	},
 	"area_5": {
 		"label": "npBase1",
@@ -108,13 +108,13 @@
 	},
 	"area_7": {
 		"label": "npBase3",
-		"pos1": [0, 1280],
-		"pos2": [1800, 5248]
+		"pos1": [384, 1152],
+		"pos2": [2560, 5760]
 	},
 	"area_8": {
 		"label": "npBase4",
-		"pos1": [5888, 0],
-		"pos2": [8832, 1280]
+		"pos1": [5504, 384],
+		"pos2": [8320, 1920]
 	},
 	"area_9": {
 		"label": "factory1Trigger",
@@ -285,24 +285,12 @@
 	"object_19": {
 		"label": "nanolab",
 		"id": 501,
-		"type": 1
+		"type": 2
 	},
 	"object_20": {
 		"label": "aerolab",
 		"id": 679,
-		"type": 1
-	},
-	"object_21": {
-		"label": "nanolabTEMP",
-		"id": 969,
-		"player": 7,
-		"type": 1
-	},
-	"object_22": {
-		"label": "aerolabTEMP",
-		"id": 970,
-		"player": 7,
-		"type": 1
+		"type": 2
 	},
 	"radius_0": {
 		"label": "removeObjectiveBlip0",
@@ -332,6 +320,12 @@
 		"label": "removeObjectiveBlip4",
 		"subscriber": 0,
 		"pos": [512, 1792],
-		"radius": 1240
+		"radius": 1280
+	},
+	"radius_5": {
+		"label": "revealFinal",
+		"subscriber": 0,
+		"pos": [7872, 832],
+		"radius": 640
 	}
 }

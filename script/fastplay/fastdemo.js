@@ -190,10 +190,10 @@ function NPLZReinforcements()
 		lzWave = lzWave - 1;
 		var TankNum = 4 + difnum;
 		var list = [cTempl.npmhtc1, cTempl.npmhttw, cTempl.npmhtrp];
-		var droids = [];
+		var tdroids = [];
 		for (var i = 0; i < TankNum; ++i)
 		{
-			droids.push(list[camRand(list.length)]);
+			tdroids.push(list[camRand(list.length)]);
 		}
 		camSendReinforcement(NEW_PARADIGM, camMakePos("NPLZPos"), tdroids, CAM_REINFORCE_TRANSPORT,
 			{
@@ -364,8 +364,8 @@ function eventStartLevel()
 		"base7Research1": { tech: "R-Struc-Research-Upgrade01" },
 		"base7Research2": { tech: "R-Vehicle-Engine02" },
 		"base7Power": { tech: "R-Struc-Power-Upgrade01" },
-		"aerolabTEMP": { tech: ["R-Wpn-Mortar01Lt", "R-Wpn-Rocket01-LtAT"] },
-		"nanolabTEMP": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
+		"aerolab": { tech: ["R-Wpn-Mortar01Lt", "R-Wpn-Rocket01-LtAT"] },
+		"nanolab": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
 	});
 //----------------------------------Enemy Factories--------------------------------------
 	camSetFactories({
@@ -395,21 +395,21 @@ function eventStartLevel()
 			order: CAM_ORDER_DEFEND,
 			groupSize: 9,
 			throttle: camChangeOnDiff(camSecondsToMilliseconds(20)),
-			templates: [cTempl.nphmg]
+			templates: [cTempl.nplhtmg, cTempl.nplhtc1]
 		},
 		"base5Factory1": {
 			assembly: "base5Assembly1",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 3,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
-			templates: [cTempl.npblc, cTempl.nphmg]
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
+			templates: [cTempl.nplhtmg, cTempl.nplhtc1, cTempl.nplhtfl]
 		},
 		"base5Factory2": {
 			assembly: "base5Assembly2",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 3,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
-			templates: [cTempl.nphmg, cTempl.npblc]
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
+			templates: [cTempl.nplhtmg, cTempl.nplhtc1, cTempl.nplhtfl]
 		},
 		"base6Factory1": {
 			assembly: "base6Assembly1",
@@ -429,28 +429,28 @@ function eventStartLevel()
 			assembly: "base7Assembly1",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(50)),
-			templates: [cTempl.npmrl, cTempl.npblc]
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
+			templates: [cTempl.npmhtrp, cTempl.npmhtmo]
 		},
 		"base7Factory2": {
 			assembly: "base7Assembly2",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(50)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
 			templates: [cTempl.npltat, cTempl.nphmg]
 		},
 		"base7CyFactory1": {
 			assembly: "base7Assembly3",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
 			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		},
 		"base7CyFactory2": {
 			assembly: "base7Assembly4",
 			order: CAM_ORDER_ATTACK,
 			groupSize: 4,
-			throttle: camChangeOnDiff(camSecondsToMilliseconds(40)),
+			throttle: camChangeOnDiff(camSecondsToMilliseconds(30)),
 			templates: [ cTempl.npcybc, cTempl.npcybf, cTempl.npcybr ]
 		}
 	});
