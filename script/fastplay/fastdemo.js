@@ -95,11 +95,16 @@ camAreaEvent("np2Trigger", function()
 });
 camAreaEvent("npFinal", function()
 {
-	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(5)));
+	setTimer("NPBlitz", camChangeOnDiff(camMinutesToMilliseconds(4)));
+});
+camAreaEvent("preCollapseBase", function()
+{
+	camPlayVideos(["pcv903.ogg"]);
+	hackAddMessage("FAST_OBJ8", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 camAreaEvent("enemyLZtrigger", function()
 {
-	setTimer("NPLZReinforcements", camChangeOnDiff(camMinutesToMilliseconds(3)));
+	setTimer("NPLZReinforcements", camChangeOnDiff(camSecondsToMilliseconds(150)));
 	camPlayVideos(["pcv382.ogg"]);
 	//hackAddMessage() reveal enemyLZ========================================
 });
@@ -122,6 +127,10 @@ camAreaEvent("removeObjectiveBlip3", function()
 camAreaEvent("removeObjectiveBlip4", function()
 {
 	hackRemoveMessage("FAST_OBJ5", PROX_MSG, CAM_HUMAN_PLAYER);
+});
+camAreaEvent("removeObjectiveBlip5", function()
+{
+	hackRemoveMessage("FAST_OBJ8", PROX_MSG, CAM_HUMAN_PLAYER);
 });
 //------------------------------Mission Objective Videos---------------------------------
 function camArtifactPickup_artifactpos()
@@ -149,6 +158,14 @@ function VidSynap()
 	camPlayVideos({video: "MBDEMO9_MSG", type: MISS_MSG});
 }
 //-----------------------------------Game Mechanics--------------------------------------
+function extraVictoryCondition()
+{
+	var enemies = enumArea(0, 0, mapWidth, mapHeight, ENEMIES, false);
+	if(Wave <= 5 && lzWave <= 5)
+	{
+		return true;
+	}
+}
 function playerUnits()
 {
 	if (difficulty === HARD || difficulty === INSANE)
@@ -292,7 +309,9 @@ function eventStartLevel()
 {
 	setAlliance(NEW_PARADIGM, SCAV_7, true);
 	var startpos = getObject("startPosition");
-	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined);
+	camSetStandardWinLossConditions(CAM_VICTORY_STANDARD, undefined, {
+		callback: "extraVictoryCondition"
+	});
 	var lz = getObject("landingZone");
 	var enemyLZ = getObject("enemylandingZone");
 	centreView(startpos.x, startpos.y);

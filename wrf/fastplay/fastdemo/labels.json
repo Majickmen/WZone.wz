@@ -168,6 +168,12 @@
 		"pos1": [384, 1664],
 		"pos2": [2432, 2944]
 	},
+	"area_18": {
+		"label": "preCollapseBase",
+		"subscriber": 0,
+		"pos1": [9472, 5120],
+		"pos2": [10240, 5376]
+	},
 	"object_0": {
 		"label": "radarTower",
 		"id": 415,
@@ -327,5 +333,11 @@
 		"subscriber": 0,
 		"pos": [7872, 832],
 		"radius": 640
+	},
+	"radius_5": {
+		"label": "removeObjectiveBlip5",
+		"subscriber": 0,
+		"pos": [9472, 4352],
+		"radius": 320
 	}
 }
