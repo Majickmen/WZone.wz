@@ -285,13 +285,23 @@
 	"object_19": {
 		"label": "nanolab",
 		"id": 501,
-		"player": 1,
 		"type": 1
 	},
 	"object_20": {
 		"label": "aerolab",
 		"id": 679,
-		"player": 1,
+		"type": 1
+	},
+	"object_21": {
+		"label": "nanolabTEMP",
+		"id": 969,
+		"player": 7,
+		"type": 1
+	},
+	"object_22": {
+		"label": "aerolabTEMP",
+		"id": 970,
+		"player": 7,
 		"type": 1
 	},
 	"radius_0": {

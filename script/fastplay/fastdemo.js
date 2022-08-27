@@ -348,8 +348,6 @@ function eventStartLevel()
 	});
 //-------------------------------------Artifacts-----------------------------------------
 	camSetArtifacts({
-		"aerolab": { tech: ["R-Wpn-Mortar01Lt", "R-Wpn-Rocket01-LtAT"] },
-		"nanolab": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
 		"radarTower": { tech: "R-Sys-Sensor-Turret01" },
 		"artifactpos": { tech: "R-Struc-PowerModuleMk1" },
 		"base1Factory": { tech: ["R-Wpn-MG2Mk1", "R-Wpn-MG-Damage01"] },
@@ -363,13 +361,11 @@ function eventStartLevel()
 		"base5Research": { tech: "R-Comp-SynapticLink" },
 		"base6Factory1": { tech: "R-Wpn-Rocket02-MRL" },
 		"base6Factory2": { tech: "R-Wpn-Cannon2Mk1" },
-//		"base7Factory1": { tech:  },
-//		"base7Factory2": { tech:  },
-//		"base7CyFactory1": { tech:  },
-//		"base7CyFactory2": { tech:  },
 		"base7Research1": { tech: "R-Struc-Research-Upgrade01" },
 		"base7Research2": { tech: "R-Vehicle-Engine02" },
 		"base7Power": { tech: "R-Struc-Power-Upgrade01" },
+		"aerolabTEMP": { tech: ["R-Wpn-Mortar01Lt", "R-Wpn-Rocket01-LtAT"] },
+		"nanolabTEMP": { tech: ["R-Vehicle-Body05", "R-Vehicle-Metals01", "R-Vehicle-Engine01"] },
 	});
 //----------------------------------Enemy Factories--------------------------------------
 	camSetFactories({
